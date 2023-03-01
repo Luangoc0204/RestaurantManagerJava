@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KH_editMonAn</title>
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Kolker+Brush&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-image: url(./images/background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+        #header{
+            width: 100%;
+            height: 100px;
+            background-color: #f0feda;
+        }
+        .logo_name{
+            display: inline-flex;
+            width: 80%;
+        }
+        .logo{
+            margin-left: 30px;
+            border: 0px;
+            height: 100px;
+        }
+        .name_restaurant{
+            color: rgb(244, 44, 41);
+            font-size: 60px;
+            margin: 10px 25px ;
+            font-family: 'Kolker Brush', cursive;
+        }
+        #body_list{
+            display: block;
+            height: 100%;
+            
+        }
+        .list_monan{
+            display: block;
+            width: 900px;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: bisque;
+            padding: 50px;
+            border-radius: 15px;
+        }
+        .btn_refresh{
+            display: block;
+            width: 100px;
+            margin: 0 auto;
+        }
+        .btn_return{
+            height: 40px;
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+        .btn_return1{
+            text-decoration: none;
+            color: #ffffff;
+        }
+        .group_edit{
+          display: flex;
+        
+        }
+      
+        .bntx{
+          border-radius: 5px;
+          text-align: center;
+          background-color: red;
+          /* padding: 0px 5px; */
+          padding: 0 7px 0 7px;
+          color: white;
+          text-decoration: none;
+          display: inline-block;
+        }
+        .col_monan{
+          width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Phần header -->
+    <div id="header">
+        <div class="logo_name">
+            <img src="https://banoca.com/wp-content/uploads/2021/03/logo-nha-hang.jpg" alt="" class="logo">
+            <h1 class="name_restaurant">Nhà hàng A+</h1>
+            
+            
+        </div>
+        
+        
+    </div>
+    <!-- Phần thân -->
+    <div id="body_list">
+        <div class="list_monan">
+            <h3 style="text-align:center; margin-bottom: 30px; color: red ">Danh sách món ăn</h3>
+            <table class="table table-hover table-bordered border-dark" style="border-top: 0px solid">
+                <thead>
+                    <tr>
+                      <th scope="col">Loại</th>
+                      <th scope="col" class="col_monan" style="text-align: center">Món ăn</th>
+                      <th scope="col" style="text-align: center" >Tên món ăn</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"  style="vertical-align: center">Khai vị</th>
+                      <td class="col_monan">
+                        
+                            <div >
+                                
+                                <ol>
+                                  <li  th:each="chonMonAn : ${dsChonMonAnKV}" >
+                                      <div th:if="${chonMonAn}">
+
+                                          <span th:text="${chonMonAn.monAn.tenMonAn}"></span>
+                                          <span>(
+                                      <span th:text="${chonMonAn.soLuong}" style="color: red;"></span>
+                                      )
+                                    </span>
+                                          <a th:href="@{NV_deleteMonAnKH?(idDB=${idDB},idMA=${chonMonAn.monAn.idMonAn})}" class="bntx">x</a>
+                                      </div>
+                                  </li>
+                                </ol>
+                            </div>
+                            
+                           
+                        
+                      </td>
+                      <td>
+
+                              <div  >
+                                  <form th:object="${dsMonAnKV}" th:action="@{NV_editMonAnKH_save?idDB={idDB}(idDB=${idDB})}" action="" method="post">
+                                      <!-- post id của món ăn -->
+                                      <div th:each="monAn, state : *{chonMonList}">
+                                          <input th:field="*{chonMonList[__${state.index}__].monAn}" type="hidden">
+                                          <div   class="card" style="width: 177px;  margin: 5px auto 5px auto;">
+                                              <img style="width:175px; height: 100px" th:src="${monAn.getMonAn().img}" class="card-img-top" alt="...">
+                                              <div class="card-body">
+
+                                                  <h5 th:text="${monAn.getMonAn().tenMonAn}" class="card-title" style="margin-top: -10px;"></h5>
+                                                  <div style="display: inline-flex; " >
+                                                      <p th:text="${monAn.getMonAn().giaTien}" class="card-text"></p>
+                                                      <span style="color: red;">đ</span>
+                                                      <p style="margin-left: 10px;">- SL: </p>
+                                                      <span th:text="${monAn.getMonAn().soLuongMonAn}" style="color: red; margin-left: 5px;"></span>
+                                                  </div>
+                                                  <div></div>
+
+                                                  <div style="display: inline-flex; margin-top: -10px;">
+                                                      <input  th:field="*{chonMonList[__${state.index}__].soLuong}" type="number" style="width:50px; margin-right:20px">
+                                                      <input type="submit" class="btn btn-primary" value="Thêm">
+
+                                                  </div>
+
+                                              </div>
+                                          </div>
+                                      </div>
+
+                                  </form>
+                              </div>
+
+
+
+
+                      </td>
+                      
+                    </tr>
+                    
+                    <tr>
+                      <th scope="row" >Món chính</th>
+                      <td class="col_monan">
+                        <div >
+                                
+                          <ol>
+                              <li th:each="chonMonAn : ${dsChonMonAnMC}" >
+                                  <div th:if="${chonMonAn}">
+
+                                      <span th:text="${chonMonAn.monAn.tenMonAn}"></span>
+                                      <span>(
+                                      <span th:text="${chonMonAn.soLuong}" style="color: red;"></span>
+                                      )
+                                    </span>
+                                      <a th:href="@{NV_deleteMonAnKH?(idDB=${idDB},idMA=${chonMonAn.monAn.idMonAn})}" class="bntx">x</a>
+                                  </div>
+                              </li>
+                          </ol>
+                      </div>
+                      </td>
+                      <td>
+                              <form th:object="${dsMonAnMC}" th:action="@{NV_editMonAnKH_save?idDB={idDB}(idDB=${idDB})}" action="" method="post">
+                                  <!-- post id của món ăn -->
+                                  <div th:each="monAn, state : *{chonMonList}">
+                                      <input th:field="*{chonMonList[__${state.index}__].monAn}" type="hidden">
+                                      <div class="card" style="width: 177px;  margin: 5px auto 5px auto;">
+                                          <img style="width:175px; height: 100px" th:src="${monAn.getMonAn().img}" class="card-img-top" alt="...">
+                                          <div class="card-body">
+
+                                              <h5 th:text="${monAn.getMonAn().tenMonAn}" class="card-title" style="margin-top: -10px;"></h5>
+                                              <div style="display: inline-flex; " >
+                                                  <p th:text="${monAn.getMonAn().giaTien}" class="card-text"></p>
+                                                  <span style="color: red;">đ</span>
+                                                  <p style="margin-left: 10px;">- SL: </p>
+                                                  <span th:text="${monAn.getMonAn().soLuongMonAn}" style="color: red; margin-left: 5px;"></span>
+                                              </div>
+                                              <div></div>
+
+                                              <div style="display: inline-flex; margin-top: -10px;">
+                                                  <input th:field="*{chonMonList[__${state.index}__].soLuong}" type="number" style="width:50px; margin-right:20px">
+                                                  <input type="submit" class="btn btn-primary" value="Thêm">
+                                              </div>
+
+                                          </div>
+                                      </div>
+                                  </div>
+
+                              </form>
+
+                      </td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">Tráng miệng</th>
+                        <td class="col_monan">
+                          <div >
+                                
+                            <ol>
+                                <li th:each="chonMonAn : ${dsChonMonAnTM}" th:if="${chonMonAn}">
+                                    <div th:if="${chonMonAn}">
+
+                                        <span th:text="${chonMonAn.monAn.tenMonAn}"></span>
+                                        <span>(
+                                      <span th:text="${chonMonAn.soLuong}" style="color: red;"></span>
+                                      )
+                                    </span>
+                                        <a th:href="@{NV_deleteMonAnKH(idDB=${idDB},idMA=${chonMonAn.monAn.idMonAn})}" class="bntx">x</a>
+                                    </div>
+                                </li>
+                            </ol>
+                        </div>
+                        </td>
+                        <td>
+                                <form th:object="${dsMonAnTM}" th:action="@{NV_editMonAnKH_save?idDB={idDB}(idDB=${idDB})}" action="" method="post">
+                                    <!-- post id của món ăn -->
+                                    <div th:each="monAn, state : *{chonMonList}">
+                                        <input th:field="*{chonMonList[__${state.index}__].monAn}" type="hidden">
+                                        <div class="card" style="width: 177px;  margin: 5px auto 5px auto;">
+                                            <img style="width:175px; height: 100px" th:src="${monAn.getMonAn().img}" class="card-img-top" alt="...">
+                                            <div class="card-body">
+
+                                                <h5 th:text="${monAn.getMonAn().tenMonAn}" class="card-title" style="margin-top: -10px;"></h5>
+                                                <div style="display: inline-flex; " >
+                                                    <p th:text="${monAn.getMonAn().giaTien}" class="card-text"></p>
+                                                    <span style="color: red;">đ</span>
+                                                    <p style="margin-left: 10px;">- SL: </p>
+                                                    <span th:text="${monAn.getMonAn().soLuongMonAn}" style="color: red; margin-left: 5px;"></span>
+                                                </div>
+                                                <div></div>
+
+                                                <div style="display: inline-flex; margin-top: -10px;">
+                                                    <input th:field="*{chonMonList[__${state.index}__].soLuong}" type="number" style="width:50px; margin-right:20px">
+                                                    <input type="submit" class="btn btn-primary" value="Thêm">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                        </td>
+                    </tr>
+                  </tbody>
+            </table>
+            <div></div>
+            <div  class="group_edit">
+                <a th:href="@{NV_dsMonAnKH?idDB={idDB}(idDB=${idDB})}" class="btn btn-danger btn_refresh">Cập nhật</a>
+                
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>

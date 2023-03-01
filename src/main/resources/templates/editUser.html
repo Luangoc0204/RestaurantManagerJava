@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>editQL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Kolker+Brush&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <style>
+    body{
+
+      margin: 0px;
+      background-image: url(./images/background.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    #header{
+      width: 100%;
+      height: 100px;
+      background-color: #f0feda;
+    }
+    .logo_name{
+      display: inline-flex;
+      width: 70%;
+    }
+    .logo{
+      margin-left: 30px;
+      border: 0px;
+      height: 100px;
+    }
+    .name_restaurant{
+      color: rgb(244, 44, 41);
+      font-size: 60px;
+      margin: 10px 25px ;
+      font-family: 'Kolker Brush', cursive;
+    }
+
+    #thongtin{
+      background-color: bisque;
+      border-radius: 15px;
+      width: 500px;
+      margin: 80px  auto;
+      padding-bottom: 30px;
+    }
+
+    .thongtindangky{
+      color: #a52834;
+      text-align: center;
+      margin: 0 auto;
+      padding: 15px 0;
+    }
+    .nhap_thongtin{
+      width: 100%;
+      margin-top: 10px;
+      margin-right: 100px;
+    }
+
+    .nhap_thongtin label{
+      width: 80px;
+      margin-right: 20px;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .dangky {
+      width: 100%;
+      display: inline-flex;
+      justify-content: center;
+      margin-top: 50px;
+
+    }
+    .input_form{
+      width: 400px;
+      margin-left: 110px;
+    }
+    .input-dangky0 {
+      border-radius: 5px;
+      color: white;
+      margin-right: 30px;
+    }
+    .input-dangky1{
+      margin-left: 10px;
+    }
+
+
+  </style>
+</head>
+<body>
+<div id="header">
+
+  <div class="logo_name">
+    <img src="https://banoca.com/wp-content/uploads/2021/03/logo-nha-hang.jpg" alt="" class="logo">
+    <h1 class="name_restaurant">Nhà hàng A+</h1>
+  </div>
+
+</div>
+<div id="thongtin">
+  <h4 class="thongtindangky">Thông tin người dùng </h4>
+
+  <div class="nhap_thongtin">
+
+    <form th:object="${user}" th:action="@{editUser_save}" action="#" method="post">
+      <input th:field="*{idUser}" type="hidden">
+      <div style="display: inline-flex ;" class="input_form ">
+        <label th:for="hoTen">Họ tên:</label>
+        <input th:field="*{hoTen}" type="text" class="form-control" style="width: 200px">
+      </div>
+
+      <div style="clear: both; display: block; height: 10px"></div>
+
+      <div style="display: inline-flex " class="input_form ">
+        <label th:for="sdt">SĐT:</label>
+        <input th:field="*{sdt}" type="text" class="form-control" style="width: 200px">
+      </div>
+
+      <div style="clear: both; display: block; height: 10px"></div>
+
+      <div style="display: inline-flex " class="input_form ">
+        <label th:for="ngaySinh">Ngày sinh:</label>
+        <input th:field="*{ngaySinh}" type="date" class="form-control" style="width: 200px">
+      </div>
+
+      <div style="clear: both; display: block; height: 10px"></div>
+
+      <div style="display: inline-flex ;" class="input_form ">
+        <label th:for="email">Email:</label>
+        <input th:field="*{email}" type="text" class="form-control 4" style="width: 200px">
+      </div>
+
+      <div style="clear: both; display: block; height: 15px"></div>
+      <input th:field="*{chucVu}" type="hidden">
+      <div th:if="${successDangKy}" class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 300px; margin: 0 auto">
+        <img src="https://i.postimg.cc/RCHYdqC1/alert-fill.png" alt="">
+        <span th:text="${successDangKy}"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="dangky">
+        <input class="btn btn-danger input-dangky0" type="submit" value="Cập nhật">
+        <a th:href="@{/giaodien}" class="btn btn-danger input-dangky1" >Hủy</a>
+      </div>
+
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="/images/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Kolker+Brush&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>KH_insertBanAn</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+<style>
+    body{
+        margin: 0px;
+        background-image: url(./images/background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        padding-bottom: 30px;
+    }
+    #header{
+        width: 100%;
+        height: 100px;
+        background-color: #f0feda;
+    }
+    .logo_name{
+        display: inline-flex;
+        width: 70%;
+    }
+    .logo{
+        margin-left: 30px;
+        border: 0px;
+        height: 100px;
+    }
+    .name_restaurant{
+        color: rgb(244, 44, 41);
+        font-size: 60px;
+        margin: 10px 25px ;
+        font-family: 'Kolker Brush', cursive;
+    }
+    .login{
+        height: 100px;
+        float: right;
+    }
+    .btn_login{
+        margin-top: 20px;
+        margin-right: 50px;
+        display: inline-flex;
+        width: 105px;
+
+    
+    }
+    .back{
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    #wapper{
+        width: 500px;
+        margin: 20px auto 0 auto;
+    }
+    #form-nhap{
+        max-width: 500px;
+        background: bisque;
+        flex-grow: 1;
+        padding: 30px 30px 40px;
+        border: 2px solid;
+        color: #000000;
+        border-radius: 10px;
+    }
+    .form-heading{
+        display: block;
+        font-size: 25px;
+        color: red;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .so_ban{
+        text-align: center;
+        width: 80px;
+    }
+    .form-group2{
+        display: inline-flex;
+        
+    }
+    .songuoi{
+        width: 85px;
+        margin: auto 0;
+        margin-left: 20px;
+    }
+    .chonngay{
+        width: 105px;
+        margin: auto 0;
+        margin-left: 20px;
+    }
+    .ngay{
+        width: 180px;
+        text-align: center;    
+    }
+    .gio{
+        text-align: center;
+        width: 180px;
+    }
+    .note{
+        margin-left: 20px;
+    }
+    .ghichu{
+        text-align: center;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-left: 20px;
+        height: 90px;
+        width: 400px;
+    }
+    .capnhat{
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+</style>
+<body>
+    <div id="header">
+        <div class="logo_name">
+            <img src="https://banoca.com/wp-content/uploads/2021/03/logo-nha-hang.jpg" alt="" class="logo">
+            <h1 class="name_restaurant">Nhà hàng A+</h1>
+        </div>
+        <div class="login">
+            <a th:href="@{/logoutSuccessful}" class="btn_login btn btn-success">Đăng xuất</a>
+        </div>
+        
+    </div>
+    <div>
+        <a th:href="@{/NV_dsDatBanKH?idKH={idKH}(idKH=${khachHang.idKhachHang})}" class="back btn btn-danger">
+            <img src="https://i.postimg.cc/B6RhxQXn/back-fill.png">Quay lại
+        </a>
+    </div>
+
+    <div id="wapper">
+        <form th:object="${datBan}" th:action="@{NV_insertDatBanKH_save?idKH={idKH}(idKH=${khachHang.idKhachHang})}" id="form-nhap" method="post">
+            <h2 class="form-heading">Thông tin đặt bàn</h2>
+            <div  style="display: inline-flex" class="form-group">
+                <label th:for="loaiBanAn" class="chonngay">Loại bàn</label>
+                <select th:field="${datBan.banAn.loaiBanAn}" class="form-control" style="height: 38px; width:50px">
+                    <option th:each="loaiBanAn : ${dsLoaiBanAn}" th:value="${loaiBanAn}" th:text="${loaiBanAn}"></option>
+                </select>
+                <span style="margin: auto 0 auto 5px; width: 45px">người</span>
+                <!-- chọn số người-->
+                  <label th:for="soLuong" class="songuoi">Số bàn :</label>
+                <input th:field="*{soLuong}" type="number" class="so_ban form-control" >
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div class="form-group2">
+                <label th:for="ngayDatBan" class="chonngay">Chọn ngày :</label>
+                <input th:field="*{ngayDatBan}" type="date" class="ngay form-control" >
+            </div>
+            <div style="clear: both; display: block; height: 20px"></div>
+            <div class="form-group2" style="display:inline-flex">
+                <label th:for="gioDatBan" class="chonngay">Chọn giờ :</label>
+                <input th:field="*{gioDatBan}" type="time" class="gio form-control" >
+            </div>
+
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div class="note">
+                <div>
+                    <p>Sáng:
+                        <span th:text="${gioBDLamViec1}"></span>
+                        <span style="margin: 0 5px">-</span>
+                        <span th:text="${gioKTLamViec1}"></span>
+                    </p>
+                </div>
+                <div>
+                    <p>Tối:
+                        <span th:text="${gioBDLamViec2}"></span>
+                        <span style="margin: 0 5px">-</span>
+                        <span th:text="${gioKTLamViec2}"></span>
+                    </p>
+                </div>
+            </div>
+            <div style="clear: both; display: block; height: 10px"></div>
+            <div>
+                <input th:field="*{ghiChu}" type="text" class="ghichu form-control" placeholder="Ghi chú">
+            </div>
+            <div th:if="${messageDatBan}" class="alert alert-danger alert-dismissible fade show" role="alert" style="width: 400px; margin: 0 auto">
+                <img src="https://i.postimg.cc/RCHYdqC1/alert-fill.png" alt="">
+                <span th:text="${messageDatBan}"></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div style="display: flex;">
+
+                <button type="submit" class="capnhat btn btn-danger" >Đặt bàn ngay</button>
+
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

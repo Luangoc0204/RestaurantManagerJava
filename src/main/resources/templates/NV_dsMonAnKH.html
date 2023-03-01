@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KH_dsMonAn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Kolker+Brush&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="bootstrap.min.css" th:href="@{bootstrap.min.css}"/>
+    <style>
+        body{
+            margin: 0px;
+            padding: 0px;
+            background-image: url(./images/background.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            padding-bottom: 30px;
+        }
+        #header{
+            width: 100%;
+            height: 100px;
+            background-color: #f0feda;
+        }
+        .logo_name{
+            display: inline-flex;
+            width: 80%;
+        }
+        .logo{
+            margin-left: 30px;
+            border: 0px;
+            height: 100px;
+        }
+        .name_restaurant{
+            color: rgb(244, 44, 41);
+            font-size: 60px;
+            margin: 10px 25px ;
+            font-family: 'Kolker Brush', cursive;
+        }
+        #body_list{
+            display: block;
+            height: 100%;
+            
+        }
+        .list_monan{
+            display: block;
+            width: 700px;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: bisque;
+            padding: 50px;
+            border-radius: 15px;
+        }
+        .btn_refresh{
+            display: block;
+            width: 100px;
+        }
+        .btn_return{
+            height: 40px;
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+        .btn_return1{
+            text-decoration: none;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Phần header -->
+    <div id="header">
+        <div class="logo_name">
+            <img src="https://banoca.com/wp-content/uploads/2021/03/logo-nha-hang.jpg" alt="" class="logo">
+            <h1 class="name_restaurant">Nhà hàng A+</h1>
+            
+            
+        </div>
+        
+        
+    </div>
+    <!-- Phần thân -->
+    <div class="btn btn-danger btn_return">
+        <img src="https://i.postimg.cc/B6RhxQXn/back-fill.png" alt="" style="width: 24px; height: 24px">
+        <a th:unless="${byDate}" th:href="@{/NV_dsDatBanKH?idKH={idKH}(idKH=${idKH})}" class="btn_return1" >Quay lại</a>
+        <a th:if="${byDate}" th:href="@{/NV_dsDatBanByDate}" class="btn_return1" >Quay lại</a>
+    </div>
+    <div id="body_list">
+        <div class="list_monan">
+            <h3 style="text-align:center; margin-bottom: 30px; color: red ">Danh sách món ăn</h3>
+            <table class="table table-hover table-bordered border-dark" style="border-top: 0px solid">
+                <thead>
+                    <tr>
+                      <th scope="col">Loại</th>
+                      <th scope="col" style="text-align: center;">Món ăn</th>
+                      <th scope="col" style="text-align: center;">Số lượng</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+<!--                  Khai vị-->
+                    <tr>
+                      <th scope="row" th:rowspan="${dsMonAnKV.size()} + 1">Khai vị</th>
+                        <td th:if="${dsMonAnKV.isEmpty()}"></td>
+                        <td th:if="${dsMonAnKV.isEmpty()}"></td>
+                    </tr>
+                        
+                    <tr th:each="chonMonAn : ${dsMonAnKV}">
+                        <td th:if="${chonMonAn}">
+                            <div class="card" style="width: 177px;  margin: 5px auto 5px auto;">
+                                <img style="width:175px; height: 100px" th:src="${chonMonAn.monAn.img}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                  <h5 th:text="${chonMonAn.monAn.tenMonAn}" class="card-title" style="margin-top: -10px;"> </h5>
+                                  <div style="display: inline-flex; " >
+                                    <p th:text="${chonMonAn.monAn.giaTien}" class="card-text"> </p>
+                                      <span style="color: red;">đ</span>
+                                  </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td th:if="${chonMonAn}" th:text="${chonMonAn.soLuong}" style="text-align: center; vertical-align: middle;">2</td>
+
+
+                    </tr>
+<!--                    Món chính -->
+                    <tr>
+                      <th scope="row" th:rowspan="${dsMonAnMC.size()} + 1">Món chính</th>
+                        <td th:if="${dsMonAnMC.isEmpty()}"></td>
+                        <td th:if="${dsMonAnMC.isEmpty()}"></td>
+                    </tr>
+                    <tr th:each="chonMonAn : ${dsMonAnMC}">
+                        <td>
+                            <div class="card" style="width: 177px;  margin: 5px auto 5px auto;">
+                                <img style="width:175px; height: 100px" th:src="${chonMonAn.monAn.img}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 th:text="${chonMonAn.monAn.tenMonAn}" class="card-title" style="margin-top: -10px;"> </h5>
+                                    <div style="display: inline-flex; " >
+                                        <p th:text="${chonMonAn.monAn.giaTien}" class="card-text"> </p>
+                                        <span style="color: red;">đ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td th:text="${chonMonAn.soLuong}" style="text-align: center; vertical-align: middle;">2</td>
+                    </tr>
+                <!--Tráng miệng-->
+                    <tr>
+                        <th scope="row" th:rowspan="${dsMonAnTM.size()} +1">Tráng miệng</th>
+                        <td th:if="${dsMonAnTM.isEmpty()}"></td>
+                        <td th:if="${dsMonAnTM.isEmpty()}"></td>
+                    </tr>
+                    <tr th:each="chonMonAn : ${dsMonAnTM}">
+                        <td>
+                            <div class="card" style="width: 177px;  margin: 5px auto 5px auto;">
+                                <img style="width:175px; height: 100px" th:src="${chonMonAn.monAn.img}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 th:text="${chonMonAn.monAn.tenMonAn}" class="card-title" style="margin-top: -10px;"> </h5>
+                                    <div style="display: inline-flex; " >
+                                        <p th:text="${chonMonAn.monAn.giaTien}" class="card-text"> </p>
+                                        <span style="color: red;">đ</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                        <td th:text="${chonMonAn.soLuong}" style="text-align: center; vertical-align: middle;">2</td>
+                    </tr>
+                  </tbody>
+            </table>
+            <div></div>
+            <div style="display: flex; justify-content: space-evenly">
+                <a th:unless="${hoaDon}" th:href="@{NV_editMonAnKH?idDB={idDB}(idDB=${datBan.idDatBan})}" class="btn btn-danger btn_refresh">Chỉnh sửa</a>
+                <a th:unless="${hoaDon}" th:href="@{NV_deleteAllMonAnKH?idDB={idDB}(idDB=${datBan.idDatBan})}" class="btn btn-danger btn_refresh">Xóa</a>
+                <div th:if="${datBan.isCheckin}">
+                    <a th:unless="${hoaDon}" th:href="@{NV_xuatHoaDonKH?idDB={idDB}(idDB=${datBan.idDatBan})}" class="btn btn-danger">Xuất hóa đơn</a>
+                    <a th:if="${hoaDon}" th:href="@{NV_xuatHoaDonKH?idDB={idDB}(idDB=${datBan.idDatBan})}" class="btn btn-danger">Xem hóa đơn</a>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+</html>

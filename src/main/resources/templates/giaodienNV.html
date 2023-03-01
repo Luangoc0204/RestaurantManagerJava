@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/data/jaxb">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> giaodienNV </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Kolker+Brush&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+  <style>
+    body{
+      margin: 0px;
+      background-image: url(./images/background.jpg);
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    #header{
+      width: 100%;
+      height: 100px;
+      background-color: #f0feda;
+    }
+    .logo_name{
+      display: inline-flex;
+      width: 70%;
+    }
+    .logo{
+      margin-left: 30px;
+      border: 0px;
+      height: 100px;
+    }
+    .name_restaurant{
+      color: rgb(244, 44, 41);
+      font-size: 60px;
+      margin: 10px 25px ;
+      font-family: 'Kolker Brush', cursive;
+    }
+    .login{
+      height: 100px;
+      float: right;
+    }
+    .btn_login{
+      margin-top: 20px;
+      margin-right: 50px;
+      display: inline-flex;
+      width: 105px;
+
+
+    }
+    .search_div{
+      margin: auto ;
+    }
+    .search_bar{
+      width: 350px;
+      height: 40px;
+      background-color: #fff;
+      border-radius: 15px;
+      margin: auto;
+
+    }
+    .search_input{
+      border-top-left-radius: 15px 15px ;
+      border-bottom-left-radius: 15px 15px ;
+      width: 300px;
+      border-width: 0;
+      outline: none;
+      padding: 16px 24px;
+    }
+    .search_bar button{
+      border: none;
+      background-color: #fff;
+      border-top-right-radius: 15px 15px;
+      border-bottom-right-radius: 15px 15px;
+    }
+    #info_user{
+      margin-top: 70px;
+      width: 100%;
+    }
+    #info{
+      border-radius: 15px;
+
+      margin-left: 60px;
+      width: 30%;
+      height: 400px;
+      background-color: bisque;
+      font-size: 20px;
+    }
+    .img_user{
+      width: 100px;
+      height: 100px;
+    }
+    .user_name_sdt{
+      margin-top: 10px;
+      margin-left: 30px;
+    }
+    .info_div{
+      padding-top: 40px;
+      margin-left: 40px;
+    }
+    .user_ngaysinh{
+      margin-top: 20px;
+    }
+
+    .btn-info-1{
+      rgin-top: 130px;
+      margin-left: 300px;
+      margin-right: 300px;
+    }
+    #funcition{
+      border-radius: 15px;
+      margin-left: 100px;
+      width: 50%;
+      height: 400px;
+      background-color: bisque;
+    }
+    .user_doanhthu {
+      margin-top: 50px;
+      margin-left: 60px;
+    }
+    .user_doanhthu1{
+      margin-top: 20px;
+      margin-left: 60px;
+    }
+    .user_monan{
+      margin-left: 50px;
+    }
+    .btn_danhsach{
+      margin-top: 150px;
+      margin-left: 250px;
+
+    }
+    .btn_danhsach1{
+      margin-top: 90px;
+      margin-right: 200px;
+      margin-left: 100px;
+    }
+    .btn-info{
+      color: white;
+      margin-left: 40px;
+      margin-top: 12px;
+      background-color: #dc3545;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      width: 170px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .btn_danhsach1{
+      margin-top: 20px;
+      margin-left: 70px;
+    }
+    .btn_edit{
+      margin-right: 30px;
+      color: white;
+      margin-top: 20px;
+      width: 100px;
+    }
+    .btn_edit6{
+      margin-top: 20px;
+      width: 140px;
+      height: 40px;
+    }
+    .btn-1{
+      margin-top: 0px;
+    }
+    .btn_2{
+      margin-top: 170px;
+    }
+    .btn_3{
+      width: 150px;
+      border-radius: 10px;
+
+    }
+    .btn_4{
+      width: 150px;
+      border-radius: 10px;
+    }
+    .btn_5{
+      width: 180px;
+    }
+
+    .btn_edit1{
+      background-color: #dc3545;
+      color: white;
+      width: 40px;
+      height: 30px;
+      border-radius: 5px;
+      font-size: 17px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+  </style>
+  <!--    Thông báo đổi password thành công-->
+  <script th:if="${messageChange}" th:inline="javascript">
+    var message = [[${messageChange}]]
+    alert(message)
+  </script>
+</head>
+<body>
+<div id="header" >
+  <div class="logo_name">
+    <img src="https://banoca.com/wp-content/uploads/2021/03/logo-nha-hang.jpg" alt="" class="logo">
+    <h1 class="name_restaurant">Nhà hàng A+</h1>
+  </div>
+  <div class="login">
+    <a th:href="@{/logoutSuccessful}" class="btn_login btn btn-success">Đăng xuất</a>
+  </div>
+
+</div>
+<div id="info_user" style="display:inline-flex">
+  <div id="info">
+    <div class="info_div">
+      <div style="display:inline-flex">
+        <img src="https://i.postimg.cc/cJjx82GB/avatar1.png" alt="" class="img_user">
+        <div class="user_name_sdt">
+          <p th:text="${user.hoTen}"></p>
+          <p th:text="${user.sdt}"></p>
+        </div>
+      </div>
+      <div></div>
+
+      <div style="display:inline-flex" class="user_ngaysinh">
+        <p >Ngày sinh:</p>
+        <p th:text="${#dates.format(user.ngaySinh, 'dd-MM-yyyy')}"></p>
+      </div>
+      <div></div>
+      <div style="display:inline-flex">
+        <p>Email:</p>
+        <p th:text="${user.email}"></p>
+      </div>
+      <div></div>
+      <div style="display:inline-flex">
+        <p>Chức vụ:</p>
+        <p th:text="${user.chucVu}"></p>
+      </div>
+    </div>
+    <div></div>
+    <div style="display:inline-flex" class="btn_danhsach1">
+      <a th:href="@{/editUser?idUser={idUser}(idUser=${user.idUser})}" class="btn btn-success btn_edit">Chỉnh sửa</a>
+      <a th:href="@{/changePassword?idUser={idUser}(idUser=${user.idUser})}" class="btn btn-success btn_edit6">Đổi mật khẩu</a>
+    </div>
+
+  </div>
+  <div id="funcition">
+    <div style="display:inline-flex" class="user_doanhthu">
+      <p  class="btn btn-danger">Ngày bắt đầu làm việc:</p>
+      <p th:text="${#dates.format(nhanVien.ngayBDLamViec, 'dd-MM-yyyy')}" style="margin: 9px 0px 0px 20px"></p>
+    </div>
+
+    <div></div>
+    <div style="display:inline-flex" class="user_doanhthu1">
+      <p class="btn btn-danger">Ca làm:</p>
+      <div></div>
+      <div style="width: 200px;display: inline-flex; margin: auto 0 auto 15px;">
+
+          <p th:text="${nhanVien.getGioBDLamViec()}"></p>
+          <span style="margin: 0 5px">-</span>
+          <p th:text="${nhanVien.getGioKTLamViec()}"></p>
+
+      </div>
+      <div></div>
+    </div>
+    <div></div>
+
+    <div style="display:flex; justify-content: space-evenly" class="btn_2">
+      <a th:href="@{/NV_dsKH}" class="btn btn-success btn_5" >Quản lý khách hàng</a>
+      <a th:href="@{/NV_dsBanAn}" class="btn btn-success btn_3" >Quản lý đặt bàn</a>
+      <a th:href="@{/NV_dsMonAn}" class="btn btn-success btn_4" >Quản lý món ăn</a>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

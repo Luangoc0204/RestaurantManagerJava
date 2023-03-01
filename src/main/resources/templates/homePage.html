@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Kolker+Brush&family=Roboto:ital,wght@1,300&display=swap" rel="stylesheet">
+    <title>Trang chủ</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+        background-image: url(./images/background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #header{
+        width: 100%;
+        height: 100px;
+        background-color: #f0feda;
+    }
+    .logo_name{
+        display: inline-flex;
+        width: 70%;
+    }
+    .logo{
+        margin-left: 30px;
+        border: 0px;
+        height: 100px;
+    }
+    .name_restaurant{
+        color: rgb(244, 44, 41);
+        font-size: 60px;
+        margin: 10px 25px ;
+        font-family: 'Kolker Brush', cursive;
+    }
+    .login{
+        height: 100px;
+        float: right;
+    }
+    .btn_login{
+            margin-top: 20px;
+            margin-right: 50px;
+            display: inline-flex;
+            width: 105px;
+    
+    }
+    #wapper{
+        min-height: 80vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #form-login{
+        font-family: 'Dancing Script', cursive;
+        max-width: 1300px;
+        background: rgba(255, 246, 246, 0.8);
+        flex-grow: 1;
+        padding: 30px 30px 40px;
+        border: 2px solid;
+        color: #3a2b2b;
+        border-radius: 10px;
+    }
+</style>
+
+<body>
+    <div id="header">
+        <div class="logo_name">
+            <img src="https://banoca.com/wp-content/uploads/2021/03/logo-nha-hang.jpg" alt="" class="logo">
+            <h1 class="name_restaurant">Nhà hàng A+</h1>
+        </div>
+        <div class="login">
+            <a href="/login" class="btn_login btn btn-success">Đăng nhập</a>
+        </div>
+
+    </div>
+    <div id="wapper">
+        <form action="" id="form-login">
+            <h3> Nhà Hàng A+ là nhà hàng với 20 năm kinh nghiệm với các món ăn bình dân phục vụ khách hàng tận tình chu đáo</h3>
+            <br>
+            <h3>Địa chỉ : 55 Giải Phóng - Hai Bà Trưng - Hà Nội</h3>
+            <br>
+            <h3>Hotline: 013378888</h3>
+        </form>
+
+    </div>
+    
+</body>
+</html>
