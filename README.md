@@ -25,7 +25,7 @@ Admin can view the customer's table list and food list.
 
 ![image](https://user-images.githubusercontent.com/126595354/222317229-aa672b66-d703-4354-ad78-12fc3ba58b70.png)
 
-And finally, the admin can view the invoice by each table.
+And finally, the admin can view the bill by each table.
 
 ![image](https://user-images.githubusercontent.com/126595354/222317480-907f5ef7-93d7-45be-82dc-dab95ac1bd07.png)
 
