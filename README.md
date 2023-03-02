@@ -15,7 +15,7 @@ This is the Admin Page.
 
 ![image](https://user-images.githubusercontent.com/126595354/222194299-30d604bd-13a4-479f-8fd7-b1030313d3d4.png)
 
-Admin can manage customer lists
+Admin can manage customer lists.
 
 ![image](https://user-images.githubusercontent.com/126595354/222316942-083f2099-bae5-4e5d-b4d6-b09171900fb7.png)
 
@@ -25,8 +25,9 @@ Admin can view the customer's table list and food list.
 
 ![image](https://user-images.githubusercontent.com/126595354/222317229-aa672b66-d703-4354-ad78-12fc3ba58b70.png)
 
+And finally, the admin can view the invoice by each table.
 
-![image](https://user-images.githubusercontent.com/126595354/222316710-2d9bbec6-4544-47a8-948a-3a4d69a75961.png)
+![image](https://user-images.githubusercontent.com/126595354/222317480-907f5ef7-93d7-45be-82dc-dab95ac1bd07.png)
 
 
 Please install and experience them.
